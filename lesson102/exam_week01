@@ -1,0 +1,34 @@
+day01
+1. 在python中，注释分几类？分别如何定义？
+answer: 分单行注释，多行注释两种；分别使用#XXX，"""XXXX"""
+2. 变量的类型有哪些？
+answer: int,float,bool,str
+3. 请定义一个变量str1 并赋予值一个字符串“hello”,再定义一个变量str2并赋值一个字符串python,那么str1+str2的值是多少？
+
+answer:
+str1 = "hello"
+str2 = "python"
+
+str1 + str2 结果为 hellopython
+
+4. 变量a = "10"; b = '30'; c = a + b; 请说出c的值是什么，类型是什么？
+如果希望c = "40",应该怎么做？请写代码实现
+answer:
+c 的值为 1030，str类型
+
+使用 c = str(int(a) + int(b)),这样求的值为“40”
+
+5. 编写一个程序，运行程序后，分别输入姓名、性别、年龄、单位、联系方式等数据，
+并用变量分别接收输入完成后，最后打印出姓名、性别、年龄、单位、联系方式等信息，
+输出的格式自行设定，尽量美观。输出需要使用上格式化输出。
+
+answer:
+
+name = input("请输入姓名")
+sex = input("请输入性别")
+age = input("请输入年龄")
+unit = input("请输入单位")
+phone = input("请输入联系方式")
+
+
+print("姓名：%s,性别：%s,年龄：%d,单位：%s,联系方式：%11d" % (name, sex, int(age), unit, int(phone)))

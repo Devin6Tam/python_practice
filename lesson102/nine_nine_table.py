@@ -21,5 +21,11 @@ for i in range(1, 10):
     row_data = ""
     for j in range(1, 10):
         if i >= j:
-            row_data += ("%d*%d=%d" % (j, i, (i * j))) + " "
+            row_data += ("%d*%d=%d" % (j, i, (i * j))) + "\t"
     print(row_data)
+
+
+for i in range(1, 10):  # 1,2,3,4,5,6,7,8,9
+    for j in range(1, i+1):
+        print("%d*%d=%d" % (j, i, i*j), end="\t")
+    print("")

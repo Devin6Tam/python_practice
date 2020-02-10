@@ -4,7 +4,7 @@
 # @Author  : tanxw
 
 a = [[1, 2, 3, 4], [1, 3, 5, 7], [2, 4, 6, 8]]
-b = ["a", "b", "c", "d", "e", "f", "g"]
+b = ["a", "a", "b", "b", "c", "d", "e", "f", "g"]
 
 # 1. 列表的增加方法
 # l.insert(索引值, 数据)
@@ -41,3 +41,9 @@ print(a.count('a'))  # 统计数据在列表中出现的次数
 #
 print(a.index("a"))  # 查找的数据在列表中第一次出现的索引
 print("g" not in a)  # 数据不在列表中
+
+# 列表去重
+s = set(b)
+print(s)
+bb = list(s)
+print(bb)

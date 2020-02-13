@@ -4,7 +4,10 @@
 # @Author  : tanxw
 # @Desc    : 函数使用
 
-import lesson103.function_module_using
+# 从当前目录导入模块
+from . import function_module_using
+# 从指定目录导入模块
+# from lesson103 import function_module_using
 
 """
 def 函数名():
@@ -52,5 +55,5 @@ def num_plus_d(num1, num2):
 
 print(num_plus_d(100, 125))
 
-print(lesson103.function_module_using.name)
-print(lesson103.function_module_using.print_lines("-", 30))
+print(function_module_using.name)
+print(function_module_using.print_lines("-", 30))

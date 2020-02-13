@@ -100,4 +100,4 @@ print(s[::-1])
 
 # 字符串排序
 ret2 = sorted(s)
-print("".join(ret2))
+print(" ".join(ret2))

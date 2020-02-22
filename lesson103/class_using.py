@@ -16,12 +16,11 @@ class Cat:
 
     def __init__(self):
         print("初始化方法")  # 初始化方法在对象被创建的时候自动调用
+        # self.__age = 28
 
     # 下面的方法，初始化需要传入参数才行
     # def __init__(self, name):
     #     print("初始化方法")  # 初始化方法在对象被创建的时候自动调用
-    #     # self.name = 'Tom'
-    #     # 对属性的设置进行改造
     #     self.name = name
 
     def __del__(self):
@@ -38,11 +37,19 @@ class Cat:
     def drink(self):
         print("%s在喝水" % self.name)
 
+    def __secret(self):
+        print("%s的年龄是:%d" % (self.name, self.__age))
+
+
+
 tom = Cat()
 tom.name = "Tom"
 tom.eat()
 tom.drink()
 print(tom)
+# 私有属性和私有方法
+tom._Cat__age = 30
+tom._Cat__secret()
 
 
 class HouseItem:

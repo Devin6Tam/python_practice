@@ -106,10 +106,19 @@ print(num_list)
 # 8. 函数参数+=的结果类似append
 def demo3(num, num_list):
     num += num
-    num_list += d
+    num_list += num_list
     print(num)
     print(num_list)
 
 demo3(num, num_list)
-print(num)
-print(num_list)
+
+
+# 9. 列举参数应用场景
+def demo4(x, y, *args, a=5, b ,**kwargs):
+    print("位置参数x,y：", x, y)
+    print("默认参数a:", a)
+    print("可变参数args:", args)
+    print("关键参数b:", b)
+    print("字典参数kwargs:", kwargs)
+
+demo4(5, 6,7,8,9,a=10,b=10,name="张三", age=18, gender=True)

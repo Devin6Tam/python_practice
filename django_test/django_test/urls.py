@@ -20,6 +20,8 @@ from django.conf.urls import url, include
 urlpatterns = [
     # path('admin/', admin.site.urls),
     url(r'^admin/', admin.site.urls),
-     # 使用应用的urls
-    url(r'^', include('booktest.urls'))
+    # 使用应用的urls
+    # url(r'^booktest/', include('booktest.urls')),
+    url(r'^', include(('booktest.urls', 'apps'), namespace='booktest')),
+
 ]

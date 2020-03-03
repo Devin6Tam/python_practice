@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django模板首页</title>
+</head>
+<body>
+    <h1>hello,Django</h1>
+    {% if book %}
+        <div>序号：{{ book.id }}</div>
+        <div>书名：{{ book.bname }}</div>
+        <div>发布时间：{{ book.bpub_date }}</div>
+        <div>阅读数：{{ book.bread }}</div>
+        <div>评论数：{{ book.bcomment }}</div>
+    {% endif %}
+</body>
+</html>

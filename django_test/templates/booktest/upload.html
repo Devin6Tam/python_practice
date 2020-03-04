@@ -1,0 +1,26 @@
+{% extends "booktest/base.html" %}
+
+{% block head %}
+    {{ block.super }}
+{% endblock %}
+    <title>书籍首页</title>
+{% block body %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
+<div><h1>上传图片</h1></div>
+<div id="upload_div">
+    <form id="upload_form" method="post" action="../upload" enctype="multipart/form-data">
+        <input type="file" name="pic">
+{#<!--        <span>{{ error }}</span><br>-->#}
+        {% csrf_token %}
+        <input type="submit" value="上传">
+    </form>
+
+</div>
+{% endblock %}
+
+{% block footer %}
+    {{ block.super }}
+{% endblock %}

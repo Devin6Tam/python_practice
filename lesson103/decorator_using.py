@@ -138,3 +138,29 @@ foo()
 too()
 sleep(2)
 too()
+
+
+# 如何对有用不定长参数的函数进行装饰
+# def a(c):
+#     def b(*args, **kwargs):
+#         print("这里是中华人民共和国的:", end="")
+#         c(*args, **kwargs) # 原demo1()
+#         print("hello,武汉加油")
+#     return b # c()
+
+# # 对带有返回值的参数进行装饰
+def a(c):
+    def b(*args, **kwargs):
+        # print("这里是中华人民共和国的:",end="")
+        return c(*args, **kwargs) # 原demo1()
+        # print("hello,武汉加油")
+    return b # c()
+
+@a
+def demo1(name):
+    print("湖南省的%s" % name)
+    return "hello,热干面加油"
+
+
+test1 = demo1("岳阳市")
+print(test1)

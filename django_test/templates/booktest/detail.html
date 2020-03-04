@@ -1,10 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Django模板首页</title>
-</head>
-<body>
+{% extends "booktest/base.html" %}
+
+{% block head %}
+    {{ block.super }}
+{% endblock %}
+    <title>书籍详情</title>
+{% block body %}
+    {{ block.super }}
+{% endblock %}
+
+{% block content %}
     <h1>hello,Django</h1>
     {% if book %}
         <div>序号：{{ book.id }}</div>
@@ -13,5 +17,9 @@
         <div>阅读数：{{ book.bread }}</div>
         <div>评论数：{{ book.bcomment }}</div>
     {% endif %}
-</body>
-</html>
+
+{% endblock %}
+
+{% block footer %}
+    {{ block.super }}
+{% endblock %}

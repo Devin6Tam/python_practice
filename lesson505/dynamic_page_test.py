@@ -65,32 +65,55 @@ D = Downloader()
 #     writer.writerow(row)
 
 
-# pip install PySide2==5.12.0
-# pip install PyQt5==5.12.0
-try:
-    from PySide2.QtGui import *
-    from PySide2.QtCore import *
-    from PySide2.QtWidgets import *
-    from PySide2.QtWebEngineWidgets import *
-except:
-    from PyQt5.QtGui import *
-    from PyQt5.QtCore import *
-    from PyQt5.QtWidgets import *
+# 选定安装包：https://download.lfd.uci.edu/pythonlibs/s2jqpv5t/PyQt4-4.11.4-cp37-cp37m-win_amd64.whl
+# 安装wheel,支持whl文件安装  pip install wheel
+# pip install PyQt4-4.11.4-cp37-cp37m-win_amd64.whl
+# from PyQt4.QtGui import *
+# from PyQt4.QtCore import *
+# from PyQt4.QtWebKit import *
 
-url = 'http://example.webscraping.com/places/default/dynamic'
+import sys
+# url = 'http://example.webscraping.com/places/default/dynamic'
 # html = D(url)
 # tree = lxml.html.fromstring(html)
 # content = tree.cssselect('#result')[0].text
 # print(content)
 
+# app = QApplication(sys.argv)
+# webview = QWebView()
+# loop = QEventLoop()
+# webview.loadFinished.connect(loop.quit)
+# webview.load(QUrl(url))
+# loop.exec_()
+# html = webview.page().mainFrame().toHtml()
+# tree = lxml.html.fromstring(html)
+# content = tree.cssselect('#result')[0].text
+# print(content)
+
+
+## 新版本使用
+# pip install PySide2==5.12.0
+# pip install PyQt5==5.11.3
+# try:
+#     from PySide2.QtCore import QUrl
+#     from PySide2.QtWidgets import QApplication
+#     from PySide2.QtWebEngineWidgets import QWebEnginePage, QWebEngineView
+# except:
+from PyQt5.QtCore import QUrl
+from PyQt5.QtWidgets import QApplication
+from PyQt5.QtWebEngineWidgets import QWebEnginePage, QWebEngineView
+# 弹窗显示
+url = 'http://example.webscraping.com/places/default/search'
 app = QApplication([])
-webview = QWebEngineView()
-webview.load(QUrl(url))
-html = webview.window()
-tree = lxml.html.fromstring(html)
-content = tree.cssselect('#result')[0].text
-print(content)
-app.exit(app.exec_())
+view = QWebEngineView()
+view.setWindowTitle("阿尔法科技有限公司")
+view.setMinimumWidth(1000)
+view.setMinimumHeight(800)
+view.load(QUrl(url))
+view.show()
+app.exec()
 
 
-
+# 基于webkit的解决方案
+# Ghost是Selenium 与PhantomJS 的结合体，安装时会携带PySide,PyQt4
+# pip install Ghost==0.5.0

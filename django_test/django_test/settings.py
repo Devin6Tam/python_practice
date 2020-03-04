@@ -40,7 +40,9 @@ INSTALLED_APPS = [
     'booktest',# 我们添加的应用
 ]
 
+# 中间件使用，可以在这个位置配置起来
 MIDDLEWARE = [
+    'django_test.system_exception.SystemException',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -63,6 +65,14 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 使用静态文件时，{{ STATIC_URL }}
+                'django.template.context_processors.static',
+                # 在模板中获取当前访问的url,如request.path,request.get_full_path()
+                # 'django.core.context_processors.request',
+            ],
+            # 引用静态文件，添加在这个位置
+            'builtins': [
+                'django.templatetags.static'
             ],
         },
     },
@@ -132,3 +142,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, "static/media")

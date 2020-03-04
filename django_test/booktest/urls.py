@@ -14,7 +14,19 @@ urlpatterns = [
     url(r'^add/$', views.add, name='add'),
     # 详情页
     url(r'^detail/([0-9]+)/$', views.detail, name='detail'),
-    url(r'^edit/([0-9]+)/$', views.edit, name='edit'),
+    url(r'^detail/(?P<id>[0-9]+)/$', views.detail1, name='detail1'),
+    url(r'^edit/(?P<id>[0-9]+)/$', views.edit, name='edit'),
+    # 正则表达式非命名组, 通过位置参数传递给视图
     url(r'^delete/([0-9]+)/$', views.delete, name='delete'),
+    # 正则表达式命名组,通过关键字参数传递给视图
+    url(r'^delete/(?P<id>[0-9]+)/$', views.delete1, name='delete1'),
 
+    url(r'^list/([0-9]+)/$', views.list, name='list'),
+    url(r'^list1/(?P<pIndex>[0-9]+)/(?P<pSize>[0-9]+)/$', views.list1, name='list1'),
+
+    # 上传页面
+    url(r'^to_upload/$', views.to_upload, name='to_upload'),
+
+    # 上传图片
+    url(r'^upload$', views.upload, name='upload'),
 ]

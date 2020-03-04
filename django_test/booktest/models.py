@@ -16,9 +16,10 @@ class BookInfoManager(models.Manager):
          return super(BookInfoManager, self).get_queryset().filter(isDelete=False)
 
      # 情况二：定义模型类的创建方法
-     def create(cls, bname, bpub_date):
+     def create(self, bname, bpub_date, bimg):
          b = BookInfo()
          b.bname = bname
+         b.bimg = bimg
          b.bpub_date = bpub_date
          b.bread = 0
          b.bcomment = 0
@@ -31,7 +32,9 @@ class BookInfo(models.Model):
     """
     # 默认自动生成id
     # 图书名称
-    bname = models.CharField(max_length=20)
+    bname = models.CharField(max_length=64)
+    # 图书版面照片，指定/cars 存储位置
+    bimg = models.ImageField(upload_to="cars/", default='')
     # 图书发布时间
     bpub_date = models.DateTimeField()
     # 阅读数 => int(11)

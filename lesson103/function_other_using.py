@@ -4,7 +4,7 @@
 # @Author  : tanxw
 # @Desc    : 函数其他使用
 
-# 1. 闭包实例
+# 1. 实例
 def line_conf(a, b):
     def line(x):
         return a*x + b

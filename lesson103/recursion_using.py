@@ -76,3 +76,24 @@ def add_nums(num):
     return num + temp
 
 print(add_nums(100))
+
+
+# 普通斐波那契数列
+def feibo(i):
+    list1 = [0,1]
+    if i <= 1:
+        return list1[1]
+    for i in range(2,i+1):
+        list1.append(list1[i-1]+list1[i-2])
+    return list1[i]
+
+print(feibo(100))
+
+# 使用递归去得到斐波那契额数列的具体值
+def feibo2(i):
+    if i == 1:
+        return 1
+    if i == 2:
+        return 1
+    return feibo2(i-1)+feibo2(i-2)
+print(feibo2(30))

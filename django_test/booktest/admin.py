@@ -14,7 +14,7 @@ class HeroInfoInline(admin.TabularInline):
 class BookInfoAdmin(admin.ModelAdmin):
      # 1、列表页属性
      # 显示字段：可以点击列头进行排序
-     list_display = ['id', 'bname', 'bpub_date']
+     list_display = ['id', 'bname', 'bimg', 'bpub_date']
      # 过滤字段：过滤框会出现在右侧
      list_filter = ['bname']
      # 搜索字段：搜索框会出现在上侧
@@ -25,8 +25,9 @@ class BookInfoAdmin(admin.ModelAdmin):
      # 2、修改、添加页属性
      # 属性分组
      fieldsets = [
-         ('base', {'fields': ['bname']}),
-         ('super', {'fields': ['bpub_date']})
+         ('图书名称', {'fields': ['bname']}),
+         ('发布时间', {'fields': ['bpub_date']}),
+         ('图书版面', {'fields': ['bimg']}),
      ]
      # 关联的对象
      inlines = [HeroInfoInline]

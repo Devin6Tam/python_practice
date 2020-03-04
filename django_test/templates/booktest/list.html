@@ -1,8 +1,5 @@
+<!DOCTYPE html>
 {% extends "booktest/base.html" %}
-{% comment %}
-<!--{% load i18n admin_static admin_modify %}-->
-<!--{% load url from future %}-->
-{% endcomment %}
 
 {% block head %}
     {{ block.super }}
@@ -25,16 +22,15 @@
                 <th width="5%">评论数</th>
                 <th width="25%">操作</th>
             </tr>
-            {% for book in book_list %}
+            {% for book in list %}
                 <tr style="text-align: center">
                     <td width="10%">{{ book.id }}</td>
-<!--                    <td width="20%"><a href="detail/{{book.id}}">{{ book.bname | default:'书名未录入' }}</a></td>-->
                     <td width="20%"><a href="{% url 'booktest:detail1' id=book.id %}">{{ book.bname | default:'书名未录入' }}</a></td>
                     <td width="10%"><img src="{% static 'media/' %}{{book.bimg}}" width="48px" height="64px"></td>
                     <td width="10%">{{ book.bpub_date | date:'Y-m-d' }}</td>
                     <td width="5%">{{ book.bread }}</td>
                     <td width="5%">{{ book.bcomment }}</td>
-                    <td width="25%"><a href="detail/{{book.id}}">查看</a>&nbsp; &nbsp;<a href="add">新增</a>&nbsp; &nbsp;
+                    <td width="25%"><a href="{% url 'booktest:detail1' id=book.id %}">查看</a>&nbsp; &nbsp;<a href="{% url 'booktest:add' %}">新增</a>&nbsp; &nbsp;
                         <a href="{% url 'booktest:edit' id=book.id %}">编辑</a>&nbsp; &nbsp;<a href="{% url 'booktest:delete1' id=book.id %}">删除</a></td>
                 </tr>
             {% empty %}
@@ -43,12 +39,13 @@
                 </tr>
             {% endfor %}
         </table>
-        {% if book_list and book_list.size > 10 %}
-            <div>数据分页层</div>
-        {% else %}
-            <div>空白区域</div>
-        {% endif %}
-
+        {% for pindex in plist %}
+            {% if pIndex == pindex %}
+                {{pindex}} &nbsp;&nbsp;
+            {% else %}
+                <a href="{% url 'booktest:list1' pIndex=pindex pSize=10 %}">{{pindex}}</a>
+            {% endif %}
+        {% endfor %}
     </div>
 {% endblock %}
 

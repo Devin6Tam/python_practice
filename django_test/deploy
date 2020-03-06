@@ -1,0 +1,46 @@
+# 部署说明文档
+# 一、准备相应python环境
+# 1.pyenv 工具安装
+详情： http://note.youdao.com/noteshare?id=986334c880cfb134aff20621511aa369
+
+# 2.安装多个版本python
+pyenv install -v [version]
+pyenv rehash
+
+# 3.上一步python版本安装，镜像源下载缓慢，可以参考这一步
+v=3.6.3;wget http://mirrors.sohu.com/python/$v/Python-$v.tar.xz -P $(pyenv root)/cache/;pyenv install $v
+
+# 4.workdir
+cd /home/python/[project]
+
+# 5.设置项目需使用的版本
+pyenv local [version]
+
+# 二、准备相应python库
+# 1.导出包，生成requirements.txt
+pip freeze > requirements.txt
+
+# 2.查看requirements.txt文件，一般如果没有全局设置镜像源，可以在下面导入包的命令中添加
+# -i http://mirrors.aliyun.com/pypi/simple/  --trusted-host=mirrors.aliyun.com
+cat requirements.txt
+
+# 3.导入包，生成相应的环境需使用的库
+pip install -r requirements.txt  -i http://mirrors.aliyun.com/pypi/simple/  --trusted-host=mirrors.aliyun.com
+
+# 三、数据库迁移准备
+# 1.生成迁移文件
+python manage.py makemigrations
+
+# 2.执行迁移生成表
+python manage.py migrate
+
+## 也有使用数据库生成模型类【相对比较少见】，此处作为参考，看情况应用
+python manage.py inspectdb > booktest/models.py
+
+# 3.创建Django后台管理
+python manage.py createsuperuser
+
+# 4.启动服务
+python manage.py runserver 8080
+
+# 四、其他项目模块引用

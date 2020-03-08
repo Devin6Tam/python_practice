@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'polls',
 ]
 
+# 中间件模块
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -58,10 +59,11 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'site_demo.urls'
 
+# 模板配置
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,6 +71,12 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 使用静态文件时，{{ STATIC_URL }}
+                'django.template.context_processors.static',
+            ],
+            # 引用静态文件，添加在这个位置
+            'builtins': [
+                'django.templatetags.static'
             ],
         },
     },
@@ -93,7 +101,7 @@ DATABASES = {
         'NAME': 'site_data',
         'USER': 'root',
         'PASSWORD': '123456',
-        'HOST': '127.0.0.1',
+        'HOST': '192.168.43.186',
         'PORT': '3306',
     }
 }
@@ -135,3 +143,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+]

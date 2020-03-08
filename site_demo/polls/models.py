@@ -1,8 +1,21 @@
 from django.db import models
 from django.utils import timezone
 import datetime
+"""
+一个模型（model）就是一个单独的、确定的数据的信息源，包含了数据的字段和操作方法。通常，每个模型映射为一张数据库中的表。
+
+基本的原则如下：
+
+每个模型在Django中的存在形式为一个Python类
+每个模型都是django.db.models.Model的子类
+模型的每个字段（属性）代表数据表的某一列
+Django将自动为你生成数据库访问API
+"""
 # Create your models here.
 
+class Person(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
 
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
@@ -11,7 +24,11 @@ class Question(models.Model):
 
     # 是否最近发布
     def was_published_recently(self):
-        return self.pub_date >= timezone.now() - datetime.timedelta(days=1)
+        return timezone.now() - datetime.timedelta(days=1) <= self.pub_date <= timezone.now()
+
+    was_published_recently.admin_order_field = 'pub_date'
+    was_published_recently.boolean = True
+    was_published_recently.short_description = 'Published recently?'
 
     # 输出打印信息
     def __str__(self):

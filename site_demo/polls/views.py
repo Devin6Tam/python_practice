@@ -73,5 +73,7 @@ def vote(request, question_id):
     else:
         selected_choice.votes += 1
         selected_choice.save()
-        return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
+        return redirect('polls:results', args=(question.id,))
+        # 等同于下面这条代码
+        # return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 

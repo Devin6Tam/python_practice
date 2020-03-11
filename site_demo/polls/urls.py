@@ -16,4 +16,6 @@ urlpatterns = [
     url(r'^detail/(?P<pk>[0-9]+)/$', views.DetailView.as_view(), name="detail"),
     url(r'^results/(?P<pk>[0-9]+)/$', views.ResultView.as_view(), name="results"),
     url(r'^vote/(?P<question_id>[0-9]+)/$', views.vote, name="vote"),
+    url(r'^name/$', views.get_name, name="name"),
+    url(r'^thanks/$', views.thanks, name="thanks"),
 ]

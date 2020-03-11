@@ -69,6 +69,8 @@ TEMPLATES = [
                 'django.template.context_processors.static',
                 # 在模板中获取当前访问的url,如request.path,request.get_full_path()
                 # 'django.core.context_processors.request',
+                # 使用多媒体文件时，{{ MEDIA_URL }}
+                'django.template.context_processors.media',
             ],
             # 引用静态文件，添加在这个位置
             'builtins': [

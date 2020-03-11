@@ -7,6 +7,7 @@ from django.template import loader
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.core.paginator import Paginator
 from django.views import generic
+from .forms import NameForm
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -77,3 +78,22 @@ def vote(request, question_id):
         # 等同于下面这条代码
         # return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
 
+def get_name(request):
+    # 如果form通过POST方法发送数据
+    if request.method == 'POST':
+        # 接受request.POST参数构造form类的实例
+        form = NameForm(request.POST)
+        # 验证数据是否合法
+        if form.is_valid():
+            # 处理form.cleaned_data中的数据
+            # ...
+            # 重定向到一个新的URL
+            return redirect('polls:thanks')
+
+    # 如果是通过GET方法请求数据，返回一个空的表单
+    else:
+        form = NameForm()
+    return render(request, 'polls/name.html', {'form': form})
+
+def thanks(request):
+    return HttpResponse("OK!")

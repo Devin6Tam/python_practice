@@ -30,6 +30,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 # django.contrib.admin：admin管理后台站点
+# django.contrib.admindocs admin文档生成器
 # django.contrib.auth：身份认证系统
 # django.contrib.contenttypes：内容类型框架
 # django.contrib.sessions：会话框架
@@ -37,6 +38,7 @@ ALLOWED_HOSTS = []
 # django.contrib.staticfiles：静态文件管理框架
 INSTALLED_APPS = [
     'django.contrib.admin',
+    'django.contrib.admindocs',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -73,10 +75,13 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 # 使用静态文件时，{{ STATIC_URL }}
                 'django.template.context_processors.static',
+                # 使用多媒体文件时，{{ MEDIA_URL }}
+                'django.template.context_processors.media',
             ],
             # 引用静态文件，添加在这个位置
             'builtins': [
                 'django.templatetags.static'
+                ''
             ],
         },
     },
@@ -146,4 +151,8 @@ STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),
+    # os.path.join(os.path.dirname(__file__), 'static').replace('\\', '/'),
 ]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

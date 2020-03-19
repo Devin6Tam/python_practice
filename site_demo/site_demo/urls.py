@@ -22,6 +22,7 @@ from django.views.static import serve
 urlpatterns = [
     url(r'^admin/doc/',include('django.contrib.admindocs.urls')),
     url('admin/', admin.site.urls),
+    url(r'^user/', include(('user.urls', 'apps'), namespace='user')),
     url(r'^polls/', include(('polls.urls', 'apps'), namespace='polls')),
     # 添加多媒体访问路径
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})

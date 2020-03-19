@@ -8,6 +8,9 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.core.paginator import Paginator
 from django.views import generic
 from .forms import NameForm
+import logging
+
+logger = logging.getLogger(__name__)
 
 def index(request):
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
@@ -29,7 +32,7 @@ def index(request):
 class IndexView(generic.ListView):
     template_name = 'polls/index.html'
     context_object_name = 'latest_question_list'
-
+    logger.info("首页展示...")
     def get_queryset(self):
         """Return the last five published questions."""
         return Question.objects.order_by('-pub_date')[:5]

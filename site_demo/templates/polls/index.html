@@ -1,4 +1,5 @@
 {% extends "./base.html" %}
+{% load i18n %}
 {% block title %}投票网站首页{% endblock %}
 {% block head %}{% endblock %}
 {% block content %}
@@ -11,4 +12,5 @@
     {% else %}
         <p>No polls are available.</p>
     {% endif %}
+    <h1>{% trans "This is the title." %}</h1>
 {% endblock %}

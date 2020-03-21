@@ -161,7 +161,7 @@ MEDIA_URL = '/media/'
 
 BASE_LOG_DIR = os.path.join(BASE_DIR, "logs")
 
-if not os.path.join(BASE_LOG_DIR):
+if not os.path.exists(BASE_LOG_DIR):
     os.mkdir(BASE_LOG_DIR)
 
 LOGGING = {

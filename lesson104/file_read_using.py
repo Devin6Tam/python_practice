@@ -5,14 +5,15 @@
 # @Desc    : 文件读写
 import os
 
-# 文件读取
+# mode = 'r' 读取文件内容
+# mode = 'w' 写入文件内容
+# mode = 'a' 追加写入文件内容
 f = open("version.txt", 'r', encoding="utf8")
 
-# 读取所有内容
-# text = f.read()
-# print(text)
 
-# 读取单行内容
+# 读取单行内容 f.readline()
+# 读取固定空间的内容 f.readline(1024) 1kb = 1024 字符
+# 读取所有行内容 f.readlines(),f.read()
 while True:
     text = f.readline()
     if not text:
@@ -21,8 +22,20 @@ while True:
 
 f.close()
 ######################################################################
+# 文件改名
+# os.rename("demo7.txt","demo8.txt")
 
-# 创建文件夹
+# 文件删除
+# os.remove("demo8.txt")
+
+# 创建文件夹(目录)
+os.mkdir("今天好开心")
+
+# 删除文件夹(目录)
+# os.rmdir("今天好开心")
+######################################################################
+
+# 创建文件夹  makedirs 多可以是多层目录
 path = "ppl"
 if not os.path.exists(path):
     os.makedirs(path)

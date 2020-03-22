@@ -3,3 +3,5 @@ https://v3.bootcss.com/ Bootstrap中文网
 https://www.nodeapp.cn/ node.js中文网
 https://vuejs.bootcss.com/guide/ vue.js中文网
 https://www.progit.cn/ git使用中文教程
+
+pip install django-simple-captcha

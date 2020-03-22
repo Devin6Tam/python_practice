@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     # 点式路径为polls.apps.PollsConfig,一般简写成polls也可
     'polls',
     'user',
+    'captcha',
 ]
 
 # 中间件模块
@@ -191,7 +192,7 @@ LOGGING = {
             'level': 'DEBUG',
             'filters': ['require_debug_true'],  # 只有在Django debug为True时才在屏幕打印日志
             'class': 'logging.StreamHandler',
-            'formatter': 'simple'
+            'formatter': 'simple',
         },
         'default': {
             'level': 'INFO',

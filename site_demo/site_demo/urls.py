@@ -24,6 +24,7 @@ urlpatterns = [
     url('admin/', admin.site.urls),
     url(r'^user/', include(('user.urls', 'apps'), namespace='user')),
     url(r'^polls/', include(('polls.urls', 'apps'), namespace='polls')),
+    url('captcha/', include('captcha.urls')),   # 增加这一行
     # 添加多媒体访问路径
     url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT})
 ]

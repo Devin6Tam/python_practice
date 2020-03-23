@@ -148,7 +148,6 @@ USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
-
 STATIC_URL = '/static/'
 
 STATICFILES_DIRS = [
@@ -156,12 +155,22 @@ STATICFILES_DIRS = [
     # os.path.join(os.path.dirname(__file__), 'static').replace('\\', '/'),
 ]
 
+# 媒体文件访问路径
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+# 邮件配置
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'txtxw@163.com'
+EMAIL_HOST_PASSWORD = 't910312w'
 
+# 注册有效期天数
+CONFIRM_DAYS = 7
+
+# 日志配置
 BASE_LOG_DIR = os.path.join(BASE_DIR, "logs")
-
 if not os.path.exists(BASE_LOG_DIR):
     os.mkdir(BASE_LOG_DIR)
 

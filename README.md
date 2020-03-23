@@ -14,8 +14,3 @@ git clone https://github.com/Devin6Tam/python_practice
 
 pip install -r requirements.txt
 ```
-
-**2. 配置程序**
-```bash
-cp env.py.example env.py
-```

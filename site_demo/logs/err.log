@@ -1,0 +1,538 @@
+[2020-03-19 15:40:40,515][Thread-15:24908][task_id:django.request][log.py:228][ERROR][Internal Server Error: /admin/user/user/add/]
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\mysql\base.py", line 74, in execute
+    return self.cursor.execute(query, args)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 209, in execute
+    res = self._query(query)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 315, in _query
+    db.query(q)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\connections.py", line 239, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.ProgrammingError: (1146, "Table 'site_data.user_user' doesn't exist")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\options.py", line 607, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\views\decorators\cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\sites.py", line 231, in inner
+    return view(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\options.py", line 1638, in add_view
+    return self.changeform_view(request, None, form_url, extra_context)
+  File "D:\python\Envs\system_env\lib\site-packages\django\utils\decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\options.py", line 1522, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\options.py", line 1558, in _changeform_view
+    form_validated = form.is_valid()
+  File "D:\python\Envs\system_env\lib\site-packages\django\forms\forms.py", line 180, in is_valid
+    return self.is_bound and not self.errors
+  File "D:\python\Envs\system_env\lib\site-packages\django\forms\forms.py", line 175, in errors
+    self.full_clean()
+  File "D:\python\Envs\system_env\lib\site-packages\django\forms\forms.py", line 378, in full_clean
+    self._post_clean()
+  File "D:\python\Envs\system_env\lib\site-packages\django\forms\models.py", line 410, in _post_clean
+    self.validate_unique()
+  File "D:\python\Envs\system_env\lib\site-packages\django\forms\models.py", line 419, in validate_unique
+    self.instance.validate_unique(exclude=exclude)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\base.py", line 999, in validate_unique
+    errors = self._perform_unique_checks(unique_checks)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\base.py", line 1103, in _perform_unique_checks
+    if qs.exists():
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\query.py", line 777, in exists
+    return self.query.has_results(using=self.db)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\sql\query.py", line 537, in has_results
+    return compiler.has_results()
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\sql\compiler.py", line 1121, in has_results
+    return bool(self.execute_sql(SINGLE))
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\sql\compiler.py", line 1151, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\mysql\base.py", line 74, in execute
+    return self.cursor.execute(query, args)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 209, in execute
+    res = self._query(query)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 315, in _query
+    db.query(q)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\connections.py", line 239, in query
+    _mysql.connection.query(self, query)
+django.db.utils.ProgrammingError: (1146, "Table 'site_data.user_user' doesn't exist")
+[2020-03-19 15:40:40,537][Thread-15:24908][task_id:django.server][basehttp.py:157][ERROR]["POST /admin/user/user/add/ HTTP/1.1" 500 221739]
+[2020-03-19 15:54:34,360][Thread-7:21384][task_id:django.server][basehttp.py:157][ERROR]["GET /admin/user/user/add/ HTTP/1.1" 500 59]
+[2020-03-23 10:24:21,142][Thread-7:23616][task_id:django.request][log.py:228][ERROR][Internal Server Error: /user/logout/]
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view user.views.logout didn't return an HttpResponse object. It returned None instead.
+[2020-03-23 10:24:21,148][Thread-7:23616][task_id:django.server][basehttp.py:157][ERROR]["GET /user/logout/ HTTP/1.1" 500 67506]
+[2020-03-23 10:24:52,950][Thread-23:23764][task_id:django.request][log.py:228][ERROR][Internal Server Error: /user/logout/]
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 126, in _get_response
+    "returned None instead." % (callback.__module__, view_name)
+ValueError: The view user.views.logout didn't return an HttpResponse object. It returned None instead.
+[2020-03-23 10:24:52,957][Thread-23:23764][task_id:django.server][basehttp.py:157][ERROR]["GET /user/logout/ HTTP/1.1" 500 67506]
+[2020-03-23 10:57:39,837][Thread-11:25780][task_id:django.request][log.py:228][ERROR][Internal Server Error: /user/register/]
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python\py_workspace\python_practice\site_demo\apps\user\views.py", line 78, in register
+    return render(request, 'login/register.html')
+  File "D:\python\Envs\system_env\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\python\Envs\system_env\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "D:\python\Envs\system_env\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: login/register.html
+[2020-03-23 10:57:39,842][Thread-11:25780][task_id:django.server][basehttp.py:157][ERROR]["GET /user/register/ HTTP/1.1" 500 90610]
+[2020-03-23 10:58:02,146][Thread-11:25780][task_id:django.request][log.py:228][ERROR][Internal Server Error: /user/register/]
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python\py_workspace\python_practice\site_demo\apps\user\views.py", line 78, in register
+    return render(request, 'login/register.html')
+  File "D:\python\Envs\system_env\lib\site-packages\django\shortcuts.py", line 19, in render
+    content = loader.render_to_string(template_name, context, request, using=using)
+  File "D:\python\Envs\system_env\lib\site-packages\django\template\loader.py", line 61, in render_to_string
+    template = get_template(template_name, using=using)
+  File "D:\python\Envs\system_env\lib\site-packages\django\template\loader.py", line 19, in get_template
+    raise TemplateDoesNotExist(template_name, chain=chain)
+django.template.exceptions.TemplateDoesNotExist: login/register.html
+[2020-03-23 10:58:02,155][Thread-11:25780][task_id:django.server][basehttp.py:157][ERROR]["GET /user/register/ HTTP/1.1" 500 90228]
+[2020-03-23 10:59:48,809][Thread-7:27356][task_id:django.request][log.py:228][ERROR][Internal Server Error: /user/register/]
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python\py_workspace\python_practice\site_demo\apps\user\views.py", line 114, in register
+    register_form = forms.RegisterForm()
+AttributeError: module 'django.forms' has no attribute 'RegisterForm'
+[2020-03-23 10:59:48,815][Thread-7:27356][task_id:django.server][basehttp.py:157][ERROR]["GET /user/register/ HTTP/1.1" 500 76002]
+[2020-03-23 11:00:24,541][Thread-7:26568][task_id:django.request][log.py:228][ERROR][Internal Server Error: /user/register/]
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python\py_workspace\python_practice\site_demo\apps\user\views.py", line 114, in register
+    register_form = forms.RegisterForm()
+AttributeError: module 'django.forms' has no attribute 'RegisterForm'
+[2020-03-23 11:00:24,548][Thread-7:26568][task_id:django.server][basehttp.py:157][ERROR]["GET /user/register/ HTTP/1.1" 500 75847]
+[2020-03-23 11:00:27,076][Thread-7:26568][task_id:django.request][log.py:228][ERROR][Internal Server Error: /user/register/]
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python\py_workspace\python_practice\site_demo\apps\user\views.py", line 114, in register
+    register_form = forms.RegisterForm()
+AttributeError: module 'django.forms' has no attribute 'RegisterForm'
+[2020-03-23 11:00:27,083][Thread-7:26568][task_id:django.server][basehttp.py:157][ERROR]["GET /user/register/ HTTP/1.1" 500 75946]
+[2020-03-23 11:00:28,217][Thread-7:26568][task_id:django.request][log.py:228][ERROR][Internal Server Error: /user/register/]
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python\py_workspace\python_practice\site_demo\apps\user\views.py", line 114, in register
+    register_form = forms.RegisterForm()
+AttributeError: module 'django.forms' has no attribute 'RegisterForm'
+[2020-03-23 11:00:28,221][Thread-7:26568][task_id:django.server][basehttp.py:157][ERROR]["GET /user/register/ HTTP/1.1" 500 75946]
+[2020-03-23 11:00:29,358][Thread-7:26568][task_id:django.request][log.py:228][ERROR][Internal Server Error: /user/register/]
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python\py_workspace\python_practice\site_demo\apps\user\views.py", line 114, in register
+    register_form = forms.RegisterForm()
+AttributeError: module 'django.forms' has no attribute 'RegisterForm'
+[2020-03-23 11:00:29,361][Thread-7:26568][task_id:django.server][basehttp.py:157][ERROR]["GET /user/register/ HTTP/1.1" 500 75946]
+[2020-03-23 11:00:29,744][Thread-7:26568][task_id:django.request][log.py:228][ERROR][Internal Server Error: /user/register/]
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python\py_workspace\python_practice\site_demo\apps\user\views.py", line 114, in register
+    register_form = forms.RegisterForm()
+AttributeError: module 'django.forms' has no attribute 'RegisterForm'
+[2020-03-23 11:00:29,750][Thread-7:26568][task_id:django.server][basehttp.py:157][ERROR]["GET /user/register/ HTTP/1.1" 500 75979]
+[2020-03-23 11:00:29,752][Thread-7:26568][task_id:django.server][basehttp.py:157][ERROR]["GET /user/register/ HTTP/1.1" 500 59]
+[2020-03-23 11:00:29,909][Thread-9:26240][task_id:django.request][log.py:228][ERROR][Internal Server Error: /user/register/]
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python\py_workspace\python_practice\site_demo\apps\user\views.py", line 114, in register
+    register_form = forms.RegisterForm()
+AttributeError: module 'django.forms' has no attribute 'RegisterForm'
+[2020-03-23 11:00:29,915][Thread-9:26240][task_id:django.server][basehttp.py:157][ERROR]["GET /user/register/ HTTP/1.1" 500 75979]
+[2020-03-23 11:00:29,917][Thread-9:26240][task_id:django.server][basehttp.py:157][ERROR]["GET /user/register/ HTTP/1.1" 500 59]
+[2020-03-23 11:00:30,038][Thread-11:23508][task_id:django.request][log.py:228][ERROR][Internal Server Error: /user/register/]
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python\py_workspace\python_practice\site_demo\apps\user\views.py", line 114, in register
+    register_form = forms.RegisterForm()
+AttributeError: module 'django.forms' has no attribute 'RegisterForm'
+[2020-03-23 11:00:30,042][Thread-11:23508][task_id:django.server][basehttp.py:157][ERROR]["GET /user/register/ HTTP/1.1" 500 75979]
+[2020-03-23 11:40:01,146][Thread-7:25820][task_id:django.request][log.py:228][ERROR][Internal Server Error: /admin/user/user/3/change/]
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\mysql\base.py", line 74, in execute
+    return self.cursor.execute(query, args)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 209, in execute
+    res = self._query(query)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 315, in _query
+    db.query(q)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\connections.py", line 239, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.OperationalError: (1054, "Unknown column 'user_user.has_confirmed' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\options.py", line 607, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\views\decorators\cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\sites.py", line 231, in inner
+    return view(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\options.py", line 1641, in change_view
+    return self.changeform_view(request, object_id, form_url, extra_context)
+  File "D:\python\Envs\system_env\lib\site-packages\django\utils\decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\options.py", line 1522, in changeform_view
+    return self._changeform_view(request, object_id, form_url, extra_context)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\options.py", line 1543, in _changeform_view
+    obj = self.get_object(request, unquote(object_id), to_field)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\options.py", line 755, in get_object
+    return queryset.get(**{field.name: object_id})
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\query.py", line 411, in get
+    num = len(clone)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\query.py", line 258, in __len__
+    self._fetch_all()
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\query.py", line 1261, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\query.py", line 57, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\sql\compiler.py", line 1151, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\mysql\base.py", line 74, in execute
+    return self.cursor.execute(query, args)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 209, in execute
+    res = self._query(query)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 315, in _query
+    db.query(q)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\connections.py", line 239, in query
+    _mysql.connection.query(self, query)
+django.db.utils.OperationalError: (1054, "Unknown column 'user_user.has_confirmed' in 'field list'")
+[2020-03-23 11:40:01,182][Thread-7:25820][task_id:django.server][basehttp.py:157][ERROR]["GET /admin/user/user/3/change/ HTTP/1.1" 500 205281]
+[2020-03-23 11:40:05,429][Thread-7:25820][task_id:django.request][log.py:228][ERROR][Internal Server Error: /admin/user/user/]
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\mysql\base.py", line 74, in execute
+    return self.cursor.execute(query, args)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 209, in execute
+    res = self._query(query)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 315, in _query
+    db.query(q)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\connections.py", line 239, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.OperationalError: (1054, "Unknown column 'user_user.has_confirmed' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\options.py", line 607, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\views\decorators\cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\sites.py", line 231, in inner
+    return view(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\utils\decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\options.py", line 1796, in changelist_view
+    'selection_note': _('0 of %(cnt)s selected') % {'cnt': len(cl.result_list)},
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\query.py", line 258, in __len__
+    self._fetch_all()
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\query.py", line 1261, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\query.py", line 57, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\sql\compiler.py", line 1151, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\mysql\base.py", line 74, in execute
+    return self.cursor.execute(query, args)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 209, in execute
+    res = self._query(query)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 315, in _query
+    db.query(q)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\connections.py", line 239, in query
+    _mysql.connection.query(self, query)
+django.db.utils.OperationalError: (1054, "Unknown column 'user_user.has_confirmed' in 'field list'")
+[2020-03-23 11:40:05,447][Thread-7:25820][task_id:django.server][basehttp.py:157][ERROR]["GET /admin/user/user/ HTTP/1.1" 500 188243]
+[2020-03-23 11:40:09,253][Thread-7:25820][task_id:django.request][log.py:228][ERROR][Internal Server Error: /admin/user/user/]
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\mysql\base.py", line 74, in execute
+    return self.cursor.execute(query, args)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 209, in execute
+    res = self._query(query)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 315, in _query
+    db.query(q)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\connections.py", line 239, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.OperationalError: (1054, "Unknown column 'user_user.has_confirmed' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\options.py", line 607, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\views\decorators\cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\sites.py", line 231, in inner
+    return view(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\utils\decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\options.py", line 1796, in changelist_view
+    'selection_note': _('0 of %(cnt)s selected') % {'cnt': len(cl.result_list)},
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\query.py", line 258, in __len__
+    self._fetch_all()
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\query.py", line 1261, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\query.py", line 57, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\sql\compiler.py", line 1151, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\mysql\base.py", line 74, in execute
+    return self.cursor.execute(query, args)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 209, in execute
+    res = self._query(query)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 315, in _query
+    db.query(q)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\connections.py", line 239, in query
+    _mysql.connection.query(self, query)
+django.db.utils.OperationalError: (1054, "Unknown column 'user_user.has_confirmed' in 'field list'")
+[2020-03-23 11:40:09,275][Thread-7:25820][task_id:django.server][basehttp.py:157][ERROR]["GET /admin/user/user/ HTTP/1.1" 500 187858]
+[2020-03-23 11:40:15,128][Thread-7:25820][task_id:django.request][log.py:228][ERROR][Internal Server Error: /admin/user/user/]
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\mysql\base.py", line 74, in execute
+    return self.cursor.execute(query, args)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 209, in execute
+    res = self._query(query)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 315, in _query
+    db.query(q)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\connections.py", line 239, in query
+    _mysql.connection.query(self, query)
+MySQLdb._exceptions.OperationalError: (1054, "Unknown column 'user_user.has_confirmed' in 'field list'")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\options.py", line 607, in wrapper
+    return self.admin_site.admin_view(view)(*args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\views\decorators\cache.py", line 44, in _wrapped_view_func
+    response = view_func(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\sites.py", line 231, in inner
+    return view(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\utils\decorators.py", line 43, in _wrapper
+    return bound_method(*args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\utils\decorators.py", line 130, in _wrapped_view
+    response = view_func(request, *args, **kwargs)
+  File "D:\python\Envs\system_env\lib\site-packages\django\contrib\admin\options.py", line 1796, in changelist_view
+    'selection_note': _('0 of %(cnt)s selected') % {'cnt': len(cl.result_list)},
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\query.py", line 258, in __len__
+    self._fetch_all()
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\query.py", line 1261, in _fetch_all
+    self._result_cache = list(self._iterable_class(self))
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\query.py", line 57, in __iter__
+    results = compiler.execute_sql(chunked_fetch=self.chunked_fetch, chunk_size=self.chunk_size)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\models\sql\compiler.py", line 1151, in execute_sql
+    cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 100, in execute
+    return super().execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 68, in execute
+    return self._execute_with_wrappers(sql, params, many=False, executor=self._execute)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 77, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\utils.py", line 90, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\utils.py", line 86, in _execute
+    return self.cursor.execute(sql, params)
+  File "D:\python\Envs\system_env\lib\site-packages\django\db\backends\mysql\base.py", line 74, in execute
+    return self.cursor.execute(query, args)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 209, in execute
+    res = self._query(query)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\cursors.py", line 315, in _query
+    db.query(q)
+  File "D:\python\Envs\system_env\lib\site-packages\MySQLdb\connections.py", line 239, in query
+    _mysql.connection.query(self, query)
+django.db.utils.OperationalError: (1054, "Unknown column 'user_user.has_confirmed' in 'field list'")
+[2020-03-23 11:40:15,141][Thread-7:25820][task_id:django.server][basehttp.py:157][ERROR]["GET /admin/user/user/ HTTP/1.1" 500 187891]
+[2020-03-23 11:42:02,132][Thread-7:25820][task_id:django.request][log.py:228][ERROR][Internal Server Error: /user/register/]
+Traceback (most recent call last):
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\exception.py", line 34, in inner
+    response = get_response(request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\handlers\base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "D:\python\py_workspace\python_practice\site_demo\apps\user\views.py", line 150, in register
+    send_email(email, code)
+  File "D:\python\py_workspace\python_practice\site_demo\apps\user\views.py", line 47, in send_email
+    msg.send()
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\mail\message.py", line 276, in send
+    return self.get_connection(fail_silently).send_messages([self])
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\mail\backends\smtp.py", line 102, in send_messages
+    new_conn_created = self.open()
+  File "D:\python\Envs\system_env\lib\site-packages\django\core\mail\backends\smtp.py", line 69, in open
+    self.connection.login(self.username, self.password)
+  File "d:\python\py_env_manager\python37\lib\smtplib.py", line 730, in login
+    raise last_exception
+  File "d:\python\py_env_manager\python37\lib\smtplib.py", line 721, in login
+    initial_response_ok=initial_response_ok)
+  File "d:\python\py_env_manager\python37\lib\smtplib.py", line 642, in auth
+    raise SMTPAuthenticationError(code, resp)
+smtplib.SMTPAuthenticationError: (535, b'5.7.8 authentication failed')
+[2020-03-23 11:42:02,144][Thread-7:25820][task_id:django.server][basehttp.py:157][ERROR]["POST /user/register/ HTTP/1.1" 500 112948]

@@ -58,6 +58,6 @@ RUN $HOME/.pyenv/shims/python3.7 manage.py makemigrations && \
     $HOME/.pyenv/shims/python3.7 manage.py migrate
 
 # 暴露端口，运行服务
-EXPOSE 8000
-ENTRYPOINT uwsgi --ini uwsgi.ini & /usr/local/nginx/sbin/nginx
+EXPOSE 80
+ENTRYPOINT $HOME/.pyenv/shims/uwsgi --ini uwsgi.ini & /usr/local/nginx/sbin/nginx
 

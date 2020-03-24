@@ -22,5 +22,7 @@ nginx 启动与停止
 
 
 清理废弃容器，脏镜像
-docker rm (docker ps -a | grep "Exited" | awk '{print $1}')
+docker rm $(docker ps -a | grep "Exited" | awk '{print $1}')
 docker rmi $(docker images | grep none | awk '{print $3}')
+
+docker run -itd -p 8001:8000 site_demo:v1.0.1

@@ -8,6 +8,8 @@ RUN yum install -y epel-release && \
         sqlite-devel readline-devel zlib-devel bzip2-devel pcre-devel gd-devel \
         ncurses xz libffi-devel iproute net-tools telnet wget curl
 
+COPY requirements.txt  $HOME/requirements.txt
+
 # pyenv环境配置
 RUN yum -y install git && \
     git clone https://github.com/pyenv/pyenv.git ~/.pyenv && \
@@ -16,7 +18,8 @@ RUN yum -y install git && \
     echo 'eval "$(pyenv init -)"' >> ~/.bash_profile && \
     source ~/.bash_profile  && \
     v=3.7.7;wget http://mirrors.sohu.com/python/$v/Python-$v.tar.xz -P $(pyenv root)/cache/;pyenv install $v && \
-    pyenv global $v
+    pyenv global 3.7.7
+
 
 # pip环境配置及依赖库安装
 RUN mkdir ~/.pip && \
@@ -43,18 +46,18 @@ RUN wget http://nginx.org/download/nginx-1.17.9.tar.gz && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 # 创建工作目录
-RUN mkdir -p /python/web_station/{log,site-demo}
+RUN mkdir -p /python/web_station/{log,site_demo}
 WORKDIR /python/web_station/
 
 # 拷贝项目
-COPY ./site-demo/nginx.conf /usr/local/nginx/conf/nginx.conf
-COPY ./site-demo/* /python/web_station/site-demo
+COPY nginx.conf /usr/local/nginx/conf/nginx.conf
+COPY * /python/web_station/site_demo
 
 # 生成数据迁移文件，创建表
-RUN python ./site-demo/manage.py makemigrations && \
-    python ./site-demo/manage.py migrate
+RUN python ./site_demo/manage.py makemigrations && \
+    python ./site_demo/manage.py migrate
 
 # 暴露端口，运行服务
 EXPOSE 8000
-ENTRYPOINT uwsgi --ini ./site-demo/uwsgi.ini & /usr/local/nginx/sbin/nginx
+ENTRYPOINT uwsgi --ini ./site_demo/uwsgi.ini & /usr/local/nginx/sbin/nginx
 

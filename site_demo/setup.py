@@ -13,7 +13,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md'), encoding='utf-8'
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='site-demo',
+    name='site_demo',
     version='1.0',
     packages=find_packages(),
     include_package_data=True,

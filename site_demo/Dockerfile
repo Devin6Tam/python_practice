@@ -57,7 +57,10 @@ COPY * /python/web_station/site_demo/
 RUN $HOME/.pyenv/shims/python3.7 manage.py makemigrations && \
     $HOME/.pyenv/shims/python3.7 manage.py migrate
 
-# 暴露端口，运行服务
+# 暴露端口
 EXPOSE 80
-ENTRYPOINT $HOME/.pyenv/shims/uwsgi --ini uwsgi.ini & /usr/local/nginx/sbin/nginx
+EXPOSE 8000
+
+# 执行脚本，运行服务
+ENTRYPOINT ["/bin/bash","-c",'start.sh']
 

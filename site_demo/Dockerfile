@@ -26,11 +26,11 @@ RUN mkdir ~/.pip && \
     echo '[global]' >> ~/.pip/pip.conf && \
     echo 'index-url=https://mirrors.aliyun.com/pypi/simple/' >> ~/.pip/pip.conf && \
     echo 'trusted-host=mirrors.aliyun.com' >> ~/.pip/pip.conf && \
-    pip install --upgrade pip && \
-    pip install -r requirements.txt
+    $HOME/.pyenv/shims/pip install --upgrade pip && \
+    $HOME/.pyenv/shims/pip install -r requirements.txt
 
 # 安装uwsgi依赖库 - 一般windows环境开发不涉及
-RUN pip install uwsgi
+RUN $HOME/.pyenv/shims/pip install uwsgi
 
 # 安装nginx服务
 RUN wget http://nginx.org/download/nginx-1.17.9.tar.gz && \
@@ -47,17 +47,17 @@ RUN wget http://nginx.org/download/nginx-1.17.9.tar.gz && \
 
 # 创建工作目录
 RUN mkdir -p /python/web_station/{log,site_demo}
-WORKDIR /python/web_station/
+WORKDIR /python/web_station/site_demo
 
 # 拷贝项目
 COPY nginx.conf /usr/local/nginx/conf/nginx.conf
-COPY * /python/web_station/site_demo
+COPY * /python/web_station/site_demo/
 
 # 生成数据迁移文件，创建表
-RUN python ./site_demo/manage.py makemigrations && \
-    python ./site_demo/manage.py migrate
+RUN $HOME/.pyenv/shims/python3.7 manage.py makemigrations && \
+    $HOME/.pyenv/shims/python3.7 manage.py migrate
 
 # 暴露端口，运行服务
 EXPOSE 8000
-ENTRYPOINT uwsgi --ini ./site_demo/uwsgi.ini & /usr/local/nginx/sbin/nginx
+ENTRYPOINT uwsgi --ini uwsgi.ini & /usr/local/nginx/sbin/nginx
 

@@ -1,5 +1,13 @@
 include LICENSE
-include README.rst
-recursive-include login/static *
-recursive-include login/templates *
+include README.md
+include manage.py
+include setup.py
+include Dockerfile
+include uwsgi.ini
+include requirements.txt
+recursive-include apps *
+recursive-include static *
+recursive-include media *
+recursive-include templates *
+
 recursive-include docs *

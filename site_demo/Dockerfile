@@ -1,14 +1,14 @@
 FROM centos:7
 MAINTAINER txtxw
-RUN mkdir -p /python/web_station/{log,site-demo}
-WORKDIR /python/web_station/
 
+# 更新镜像源，国内加速下载
 RUN yum install -y epel-release && \
     yum makecache && \
     yum -y install gcc gcc-c++ make patch gdbm-devel openssl-devel \
         sqlite-devel readline-devel zlib-devel bzip2-devel pcre-devel gd-devel \
         ncurses xz libffi-devel iproute net-tools telnet wget curl
 
+# pyenv环境配置
 RUN yum -y install git && \
     git clone https://github.com/pyenv/pyenv.git ~/.pyenv && \
     echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile && \
@@ -18,6 +18,7 @@ RUN yum -y install git && \
     v=3.7.7;wget http://mirrors.sohu.com/python/$v/Python-$v.tar.xz -P $(pyenv root)/cache/;pyenv install $v && \
     pyenv global $v
 
+# pip环境配置及依赖库安装
 RUN mkdir ~/.pip && \
     echo '[global]' >> ~/.pip/pip.conf && \
     echo 'index-url=https://mirrors.aliyun.com/pypi/simple/' >> ~/.pip/pip.conf && \
@@ -25,6 +26,10 @@ RUN mkdir ~/.pip && \
     pip install --upgrade pip && \
     pip install -r requirements.txt
 
+# 安装uwsgi依赖库 - 一般windows环境开发不涉及
+RUN pip install uwsgi
+
+# 安装nginx服务
 RUN wget http://nginx.org/download/nginx-1.17.9.tar.gz && \
     tar zxf nginx-1.17.9.tar.gz && \
     cd nginx-1.17.9 && \
@@ -37,15 +42,19 @@ RUN wget http://nginx.org/download/nginx-1.17.9.tar.gz && \
     cd / && rm -rf nginx-1.17.9* && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
+# 创建工作目录
+RUN mkdir -p /python/web_station/{log,site-demo}
+WORKDIR /python/web_station/
 
-COPY uwsgi.ini /python/web_station/uwsgi.ini
-COPY nginx.conf /usr/local/nginx/conf/nginx.conf
-COPY * /python/web_station/site-demo
+# 拷贝项目
+COPY ./site-demo/nginx.conf /usr/local/nginx/conf/nginx.conf
+COPY ./site-demo/* /python/web_station/site-demo
 
-RUN python /python/web_station/site-demo/manage.py makemigrations && \
-    python /python/web_station/site-demo/manage.py migrate
+# 生成数据迁移文件，创建表
+RUN python ./site-demo/manage.py makemigrations && \
+    python ./site-demo/manage.py migrate
 
-
+# 暴露端口，运行服务
 EXPOSE 8000
-ENTRYPOINT uwsgi --ini /python/web_station/uwsgi.ini & /usr/local/nginx/sbin/nginx
+ENTRYPOINT uwsgi --ini ./site-demo/uwsgi.ini & /usr/local/nginx/sbin/nginx
 

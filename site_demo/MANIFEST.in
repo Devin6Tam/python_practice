@@ -5,6 +5,7 @@ include setup.py
 include Dockerfile
 include uwsgi.ini
 include nginx.conf
+include *.sh
 include requirements.txt
 recursive-include apps *
 recursive-include static *

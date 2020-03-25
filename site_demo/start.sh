@@ -1,3 +1,3 @@
 #!/bin/bash
 
-$HOME/.pyenv/shims/uwsgi --ini uwsgi.ini & /usr/local/nginx/sbin/nginx
+$HOME/.pyenv/shims/uwsgi --ini site_demo/uwsgi.ini & /usr/local/nginx/sbin/nginx

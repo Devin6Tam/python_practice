@@ -25,4 +25,7 @@ nginx 启动与停止
 docker rm $(docker ps -a | grep "Exited" | awk '{print $1}')
 docker rmi $(docker images | grep none | awk '{print $3}')
 
-docker run -itd -p 8001:8000 site_demo:v1.0.1
+docker run -itd -p 8001:8000 -p 81:80 site_demo:v1.0.3
+
+
+sed -i 's/\r//' start.sh   将windows下的文件转成unix格式

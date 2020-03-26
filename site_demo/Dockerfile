@@ -15,10 +15,6 @@ RUN yum -y install git && \
     git clone https://github.com/pyenv/pyenv.git ~/.pyenv && \
     echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile && \
     echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile && \
-    echo 'eval "$(pyenv init -)"' >> ~/.bash_profile && \
-    source ~/.bash_profile && \
-    v=3.7.7;wget http://mirrors.sohu.com/python/$v/Python-$v.tar.xz -P $(pyenv root)/cache/;pyenv install $v && \
-    pyenv global $v
     echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
 
 RUN source ~/.bash_profile  && \

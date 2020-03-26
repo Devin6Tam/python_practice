@@ -15,10 +15,13 @@ RUN yum -y install git && \
     git clone https://github.com/pyenv/pyenv.git ~/.pyenv && \
     echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bash_profile && \
     echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile && \
-    echo 'eval "$(pyenv init -)"' >> ~/.bash_profile && \
-    source ~/.bash_profile  && \
-    v=3.7.7;wget http://mirrors.sohu.com/python/$v/Python-$v.tar.xz -P $(pyenv root)/cache/;pyenv install $v && \
-    pyenv global 3.7.7
+    echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
+
+RUN source ~/.bash_profile  && \
+    v=3.7.7 && \
+    wget http://mirrors.sohu.com/python/$v/Python-$v.tar.xz -P $(pyenv root)/cache/ && \
+    pyenv install $v && \
+    pyenv global $v
 
 
 # pip环境配置及依赖库安装
@@ -33,7 +36,7 @@ RUN mkdir ~/.pip && \
 RUN $HOME/.pyenv/shims/pip install uwsgi
 
 # 安装nginx服务
-RUN wget http://nginx.org/download/nginx-1.17.9.tar.gz && \
+RUN wget http://mirrors.sohu.com/nginx/nginx-1.17.9.tar.gz && \
     tar zxf nginx-1.17.9.tar.gz && \
     cd nginx-1.17.9 && \
     ./configure --prefix=/usr/local/nginx \
@@ -45,22 +48,36 @@ RUN wget http://nginx.org/download/nginx-1.17.9.tar.gz && \
     cd / && rm -rf nginx-1.17.9* && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-# 创建工作目录
-RUN mkdir -p /python/web_station/{log,site_demo}
-WORKDIR /python/web_station/site_demo
+# 创建目录
+RUN mkdir -p /python/web_station/log
 
 # 拷贝项目
 COPY nginx.conf /usr/local/nginx/conf/nginx.conf
-COPY * /python/web_station/site_demo/
+COPY site_demo-1.0.tar.gz /python/web_station
+
+RUN cd /python/web_station && \
+    tar -xvf site_demo-1.0.tar.gz && \
+    mv site_demo-1.0 site_demo
+
+#工作目录
+WORKDIR /python/web_station/site_demo
+
+
+RUN sed -i 's/\r//' start.sh && \
+    sed -i 's/\r//' stop.sh
 
 # 生成数据迁移文件，创建表
-RUN $HOME/.pyenv/shims/python3.7 manage.py makemigrations && \
-    $HOME/.pyenv/shims/python3.7 manage.py migrate
+#RUN $HOME/.pyenv/shims/python3.7 manage.py makemigrations && \
+#    $HOME/.pyenv/shims/python3.7 manage.py migrate
 
 # 暴露端口
 EXPOSE 80
 EXPOSE 8000
 
+RUN pwd && \
+    ls -a
+
 # 执行脚本，运行服务
-ENTRYPOINT ["/bin/bash","-c",'start.sh']
+RUN /bin/bash start.sh
+#ENTRYPOINT ["/bin/bash","start.sh"]
 

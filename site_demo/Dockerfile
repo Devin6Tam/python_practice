@@ -19,6 +19,13 @@ RUN yum -y install git && \
     source ~/.bash_profile && \
     v=3.7.7;wget http://mirrors.sohu.com/python/$v/Python-$v.tar.xz -P $(pyenv root)/cache/;pyenv install $v && \
     pyenv global $v
+    echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
+
+RUN source ~/.bash_profile  && \
+    v=3.7.7 && \
+    wget http://mirrors.sohu.com/python/$v/Python-$v.tar.xz -P $(pyenv root)/cache/ && \
+    pyenv install $v && \
+    pyenv global $v
 
 
 # pip环境配置及依赖库安装
@@ -45,33 +52,36 @@ RUN wget http://mirrors.sohu.com/nginx/nginx-1.17.9.tar.gz && \
     cd / && rm -rf nginx-1.17.9* && \
     ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
-# 创建工作目录
-RUN mkdir -p /python/web_station/{log,site_demo}
-WORKDIR /python/web_station
+# 创建目录
+RUN mkdir -p /python/web_station/log
 
 # 拷贝项目
 COPY nginx.conf /usr/local/nginx/conf/nginx.conf
-RUN $HOME/.pyenv/shims/python3.7 setup.py build && \
-    $HOME/.pyenv/shims/python3.7 setup.py sdist
-ADD dist/site_demo-1.0.tar.gz ./
+COPY site_demo-1.0.tar.gz /python/web_station
+
+RUN cd /python/web_station && \
+    tar -xvf site_demo-1.0.tar.gz && \
+    mv site_demo-1.0 site_demo
+
+#工作目录
+WORKDIR /python/web_station/site_demo
+
+
+RUN sed -i 's/\r//' start.sh && \
+    sed -i 's/\r//' stop.sh
 
 # 生成数据迁移文件，创建表
 #RUN $HOME/.pyenv/shims/python3.7 manage.py makemigrations && \
 #    $HOME/.pyenv/shims/python3.7 manage.py migrate
 
-# 将windows下的文件转成unix格式
-RUN sed -i 's/\r//' site_demo/start.sh  && \
-    sed -i 's/\r//' site_demo/stop.sh && \
-    chmod +x site_demo/start.sh && \
-    chmod +x site_demo/stop.sh
-
 # 暴露端口
 EXPOSE 80
 EXPOSE 8000
 
-# 运行容器有错误，在排查中
-RUN /bin/bash site_demo/start.sh
+RUN pwd && \
+    ls -a
 
-# 执行脚本，运行服务 exec 方式
-#ENTRYPOINT ["/bin/bash", "start.sh"]
-#CMD ["top"]
+# 执行脚本，运行服务
+RUN /bin/bash start.sh
+#ENTRYPOINT ["/bin/bash","start.sh"]
+

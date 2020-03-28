@@ -4,8 +4,8 @@ MAINTAINER txtxw
 # 更新镜像源，国内加速下载
 RUN yum install -y epel-release && \
     yum makecache && \
-    yum -y install gcc gcc-c++ make patch gdbm-devel openssl-devel \
-        sqlite-devel readline-devel zlib-devel bzip2-devel pcre-devel gd-devel \
+    yum -y install gcc gcc-c++ make patch gdbm-devel openssl-devel gcc-devel python-devel \
+        sqlite-devel readline-devel zlib-devel bzip2-devel pcre-devel gd-devel mysql-devel \
         ncurses xz libffi-devel iproute net-tools telnet wget curl
 
 COPY requirements.txt  $HOME/requirements.txt
@@ -36,6 +36,7 @@ RUN mkdir ~/.pip && \
 RUN $HOME/.pyenv/shims/pip install uwsgi
 
 # 安装nginx服务 使用搜狐镜像源
+# 注意，日志要重定向输出到stdout,否则无法看到容器日志输出
 RUN wget http://mirrors.sohu.com/nginx/nginx-1.17.9.tar.gz && \
     tar zxf nginx-1.17.9.tar.gz && \
     cd nginx-1.17.9 && \
@@ -46,21 +47,23 @@ RUN wget http://mirrors.sohu.com/nginx/nginx-1.17.9.tar.gz && \
     rm -rf /usr/local/nginx/html/* && \
     echo "ok" >> /usr/local/nginx/html/status.html && \
     cd / && rm -rf nginx-1.17.9* && \
-    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+    ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && \
+    ln -sf /dev/stdout /usr/local/nginx/logs/access.log && \
+    ln -sf /dev/stderr /usr/local/nginx/logs/error.log
 
 # 创建目录
-RUN mkdir -p /python/web_station/log
+RUN mkdir -p /var/www/log
 
 # 拷贝项目
 COPY nginx.conf /usr/local/nginx/conf/nginx.conf
-COPY site_demo-1.0.tar.gz /python/web_station
+COPY site_demo-1.0.tar.gz /var/www
 
-RUN cd /python/web_station && \
+RUN cd /var/www && \
     tar -xvf site_demo-1.0.tar.gz && \
     mv site_demo-1.0 site_demo
 
 #工作目录
-WORKDIR /python/web_station/site_demo
+WORKDIR /var/www/site_demo
 
 
 RUN sed -i 's/\r//' start.sh && \
@@ -69,6 +72,11 @@ RUN sed -i 's/\r//' start.sh && \
 # 生成数据迁移文件，创建表
 #RUN $HOME/.pyenv/shims/python3.7 manage.py makemigrations && \
 #    $HOME/.pyenv/shims/python3.7 manage.py migrate
+
+# 生成静态文件，然后迁移
+RUN $HOME/.pyenv/shims/python3.7 manage.py collectstatic && \
+    cp -r /static/* /var/www/site_demo/static/
+
 
 # 暴露端口
 EXPOSE 80

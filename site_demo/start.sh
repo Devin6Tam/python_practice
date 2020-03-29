@@ -1,4 +1,4 @@
 #!/bin/bash
 
 source ~/.bash_profile
-$HOME/.pyenv/shims/uwsgi --ini uwsgi.ini & /usr/local/nginx/sbin/nginx
+/usr/local/nginx/sbin/nginx -g "daemon off;" && $HOME/.pyenv/shims/uwsgi --ini uwsgi.ini

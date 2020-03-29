@@ -69,6 +69,8 @@ WORKDIR /var/www/site_demo
 RUN sed -i 's/\r//' start.sh && \
     sed -i 's/\r//' stop.sh
 
+ENV PATH $PATH:/usr/local/nginx/sbin
+
 # 生成数据迁移文件，创建表
 #RUN $HOME/.pyenv/shims/python3.7 manage.py makemigrations && \
 #    $HOME/.pyenv/shims/python3.7 manage.py migrate
@@ -86,6 +88,6 @@ RUN pwd && \
     ls -a
 
 # 执行脚本，运行服务
-RUN /bin/bash start.sh
-#ENTRYPOINT ["/bin/bash","start.sh"]
-
+#RUN /bin/bash start.sh
+ENTRYPOINT ["/bin/bash","start.sh"]
+#CMD ["nginx", "-g", "daemon off;"]

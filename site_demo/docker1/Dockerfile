@@ -1,5 +1,27 @@
 FROM registry.cn-hangzhou.aliyuncs.com/txtxw/alpine-python:v3
 
+RUN apk --no-cache add python3 \
+       build-base \
+       python3-dev \
+       # wget dependency
+       openssl \
+       # dev dependencies
+       git \
+       bash \
+       sudo \
+       py3-pip \
+       # Pillow dependencies
+       jpeg-dev \
+       zlib-dev \
+       freetype-dev \
+       lcms2-dev \
+       openjpeg-dev \
+       tiff-dev \
+       tk-dev \
+       tcl-dev \
+       harfbuzz-dev \
+       fribidi-dev
+
 # 创建工作路径
 RUN mkdir -p /var/www
 
@@ -19,5 +41,7 @@ RUN cp -r nginx.conf /etc/nginx/nginx.conf
 # pip读取requirements.txt内容安装所需的库
 RUN pip3 install -r requirements.txt -i  https://mirrors.aliyun.com/pypi/simple/ --no-cache-dir
 
+EXPOSE 80
+
 # 启动nginx和uwsgi
-ENTRYPOINT nginx -g "daemon on;" && uwsgi --ini uwsgi.ini
+ENTRYPOINT ["/bin/bash","start.sh"]

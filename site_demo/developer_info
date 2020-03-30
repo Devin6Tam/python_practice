@@ -92,13 +92,14 @@ https://mirrors.sohu.com/python/3.7.7/
 
 
 ##########################################################
-解决问题：OSError: mysql_config not found
+1.解决问题：OSError: mysql_config not found
 通过pip install mysqlclient时报出了OSError: mysql_config not found错误
 需要安装mysqlclient 依赖的库
-yum install  gcc gcc-devel python-devel mysql-devel
+yum install -y gcc gcc-devel python-devel mysql-devel     centos
+apt-get install -y libmysqlclient-dev
 
 
-nginx+uwsgi部署django项目，admin静态文件加载问题
+2. nginx+uwsgi部署django项目，admin静态文件加载问题
 解决办法：
 在项目setting.py文件中添加：STATIC_ROOT = '/static/'
 在项目目录下收集项目静态文件：(先进虚拟环境)
@@ -106,7 +107,12 @@ python manage.py collectstatic
 收集成功后，文件在系统根目录的/static中：（可以看到有admin）
 
 
-*1 connect() to unix:///tmp/uwsgi.sock failed (2: No such file or directory) while connecting to upstream,
+3.*1 connect() to unix:///tmp/uwsgi.sock failed (2: No such file or directory) while connecting to upstream,
 uwsgi.ini 配置中
 uwsgi-socket=/tmp/uwsgi.sock  使用unix:///tmp/uwsgi.sock访问服务
 chmod-socket=777
+
+
+
+4.使用pillow依赖库注意制作镜像时，需要安装依赖库详见github官网说明
+https://github.com/python-pillow/docker-images

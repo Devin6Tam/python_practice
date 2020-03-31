@@ -17,16 +17,18 @@ RUN yum -y install git && \
     echo 'export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bash_profile && \
     echo 'eval "$(pyenv init -)"' >> ~/.bash_profile
 
-RUN source ~/.bash_profile  && \
-    v=3.7.7 && \
+# 环境变量生效
+RUN source ~/.bash_profile
+
+# 使用pyenv配置python环境
+RUN v=3.7.7 && \
     wget http://mirrors.sohu.com/python/$v/Python-$v.tar.xz -P $(pyenv root)/cache/ && \
     pyenv install $v && \
     pyenv global $v
 
 
 # pip环境配置及依赖库安装
-RUN mkdir ~/.pip && \
-    echo '[global]' >> ~/.pip/pip.conf && \
+RUN echo '[global]' >> ~/.pip/pip.conf && \
     echo 'index-url=https://mirrors.aliyun.com/pypi/simple/' >> ~/.pip/pip.conf && \
     echo 'trusted-host=mirrors.aliyun.com' >> ~/.pip/pip.conf && \
     $HOME/.pyenv/shims/pip install --upgrade pip && \
@@ -82,7 +84,6 @@ RUN $HOME/.pyenv/shims/python3.7 manage.py collectstatic && \
 
 # 暴露端口
 EXPOSE 80
-EXPOSE 8000
 
 RUN pwd && \
     ls -a

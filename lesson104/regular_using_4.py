@@ -57,4 +57,46 @@ import re
 # print(ret.group())
 
 
+# 密码
+# ^ 开始
+# ((\d+)|([A-Za-z]+)|(\W+)) 纯数字，字母，符号
+# \d 等同于 [0-9]
+# \D 等同于 [^0-9]
+# \w 等同于 [0-9a-zA-Z]
+# \W 等同于 [^0-9a-zA-Z]
+# $ 结尾
+
+# controll = True
+# while(controll):
+#     password = input("请输入密码：\n")
+#     pwd_len = len(password)
+#     if pwd_len >= 8 and pwd_len <= 16:
+#         pass
+#     else:
+#         print("请输入8~16的密码")
+#         continue
+#
+#     if re.compile('[\u4e00-\u9fa5]+').findall(password):
+#         print("输入密码错误")
+#         continue
+#
+#     ret = re.match(r'^(([0-9]+)|([A-Za-z]+)|(\W+))$', password)
+#     if ret:
+#         print("密码强度弱")
+#         continue
+#
+#     ret = re.match(r'([0-9]+(\W+|\_+|[A-Za-z]+))+|([A-Za-z]+(\W+|\_+|[0-9]+))+|((\W+|\_+)+([0-9]+|\_+|[A-Za-z]+))+', password)
+#     if ret and len(ret.group()) == len(password):
+#         print("密码强度中等")
+#         continue
+#
+#     ret = re.match(r'(\w+|\W+){8,16}', password)
+#     if ret and len(ret.group()) == len(password):
+#         print("密码很强壮")
+#         controll = False
+#     if(not controll):
+#         break
+
+
+
 

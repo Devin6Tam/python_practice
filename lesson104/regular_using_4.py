@@ -23,8 +23,8 @@ import re
 # ret = re.match(r'1[3-9]\d{9}', '18898750918')
 # print(ret)
 #
-# ret = re.match(r'\d{4}-\d{7}', '0756-5574521')
-# print(ret)
+ret = re.match(r'(([\(]?\d{3}[\)]?-)?\d{8})|(([\(]?\d{4}[\)]?-)?\d{7})', '0796-5574521')
+print(ret)
 
 
 # 网址

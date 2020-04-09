@@ -94,10 +94,41 @@ print(res)
 
 # 8. 切片
 print(s[::])
-# 截取2~5 位置的字符串
-print(s[2:6])
+# 截取索引为2，截取到第7个位的字符串
+print(s[2:7])
+# 倒序，并且每个单词的首字母放后
 print(s[::-1])
 
 # 字符串排序
 ret2 = sorted(s)
 print(" ".join(ret2))
+
+# strftime 字符串与日期的转换
+"""
+time模块中strftime可以实现字符串与日期的转换
+格式： strftime(format[tuple,]) -->string
+%Y-%m-%d %X 等同于 %Y-%m-%d %H:%M:%S  2020-04-09 09:53:06
+%x 本地日期  %X 本地时间
+%c 本地日期和时间
+%y 年份（0~99） %Y 年份完成的拼写
+%Y 年 %m 月（1~12） %d 日（1~31）
+%H 小时（0~23） %M 分钟（0~59） %S 秒（0~59）
+% a 英文星期的简写 % A 英文星期的完整拼写
+% b 英文月份的简写 % B 英文月份的完整拼写
+"""
+import time
+
+t = time.strftime('%c', time.localtime())
+print(t)
+t = time.strftime('%x', time.localtime())
+print(t)
+t = time.strftime('%X', time.localtime())
+print(t)
+t = time.strftime('%Y-%m-%d %X', time.localtime())
+print(t)
+t = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime())
+print(t)
+t = time.strftime('%A', time.localtime())
+print(t)
+t = time.strftime('%B', time.localtime())
+print(t)

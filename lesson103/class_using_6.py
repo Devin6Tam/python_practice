@@ -3,6 +3,7 @@
 # @Time    : 2020/2/15 22:04
 # @Author  : tanxw
 # @Desc    : 实例化对象及单例模式
+import gc
 
 class MusicPlayer(object):
     # 记录单例对象是否被引用
@@ -28,3 +29,11 @@ player1 = MusicPlayer()
 print(player1)
 player2 = MusicPlayer()
 print(player2)
+print('=================================')
+print(gc.get_referents(player1))
+del player1
+print(gc.collect())
+"""
+垃圾回收器在后台执行，对象被释放的时间是不能确定的。
+如果要设置调用垃圾回收器，可以使用gc模块的函数实现。
+"""

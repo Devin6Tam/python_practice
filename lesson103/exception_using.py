@@ -63,3 +63,9 @@ try:
     print(username)
 except Exception as e:
     print("发现错误 %s" % e)
+
+
+# assert 断言
+month = 13
+# 这里会抛出异常 AssertionError: month error
+assert 1 <= month <= 12, "month error"

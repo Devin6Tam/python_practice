@@ -21,3 +21,16 @@ for card_info in card_list:
     else:
         print("没有找到")
 print("循环结束")
+
+
+
+# 全局字典 sys.modules
+import sys
+print(sys.modules.keys())
+print(sys.modules.values())
+print(sys.modules['os'])
+
+# 实现导入模块的过滤
+d = sys.modules.copy()
+import copy, string
+print(zip(set(sys.modules) - set(d)))

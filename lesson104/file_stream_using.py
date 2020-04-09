@@ -30,7 +30,7 @@ import sys, time, os
 # 文件输入流
 def FileInputStream(filename):
     try:
-        f = open(filename,encoding='utf8')
+        f = open(filename, encoding='utf8')
         for line in f:
             for byte in line:
                 yield byte
